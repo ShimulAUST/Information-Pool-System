@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "SeePendingBlogs";
+    ViewData["sessionString"] = System.Web.HttpContext.Current.Session["sessionString"] as String;
+
+}
+
+
+
+
+<br />
+<br />
+<body style="background:url(../images/pic18.jpg);background-size:cover">
+    @Html.Raw(TempData["msg"]);
+    @{
+        TempData["msg"] = null;
+    }
+    <div style="background-color:white;padding:2%;margin-top:2%;margin-bottom:10%">
+        @if (ViewData["sessionString"] != null)
+        {
+            <button style="float:right;width:80px;height:30px" class="btn-info" onclick="location.href=' @Url.Action("Index", "Admin", new { adminName = ViewData["sessionString"] = System.Web.HttpContext.Current.Session["sessionString"] as String })'"><i class="fa fa-arrow-circle-left"></i>     Back</button>
+        }
+        else
+        {
+            <button style="float:right;width:80px;height:30px" class="btn-info" onclick="location.href=' @Url.Action("Index", "Home")'"><i class="fa fa-arrow-circle-left"></i>     Back</button>
+        }
+        <h2 align="center">Pending Blogs</h2>
+
+        <hr />
+
+        @if (Model.Rows.Count == 0)
+        {
+            <h3>We have no ads to show at the moment.</h3>
+        }
+        else
+        {
+            for (int i = 0; i < Model.Rows.Count; i++)
+            {
+                <div style="margin-left:10%;">
+                    <h3>Title:     @Model.Rows[i][1]</h3>
+                    <h5>Blog Id:     @Model.Rows[i][0]</h5>
+                    <h5>Body:     @Model.Rows[i][2]</h5>
+                    <h5>Type:     @Model.Rows[i][4]</h5>
+                    <h5>Blogger Id:     @Model.Rows[i][6]</h5>
+                    <h5>Approval of this blog:     <button class="btn-success" onclick="location.href=' @Url.Action("UpdatePendingBlogApproval", "Admin", new {  id =Model.Rows[i][0]})'"><i class="fa fa-check-square-o" style="width:50px"></i></button></h5>
+                </div>
+                <hr />
+            }
+
+            @*<table align="center" style="width:100%;text-align:left; padding-left:8px;" class="table-striped">
+                    <tr>
+                        <th>
+                            Blog Id
+                        </th>
+
+                        <th>
+                            Blog Title
+                        </th>
+                        <th>
+                            Blog Body
+                        </th>
+                        <th>
+                            Type
+                        </th>
+                        <th>
+                            Blogger Id
+                        </th>
+                        <th>
+                            APPROVAL
+                        </th>
+                    </tr>
+                    @for (int i = 0; i < Model.Rows.Count; i++)
+                    {
+                        <tr>
+
+                            <td>@Model.Rows[i][0]</td>
+                            <td>@Model.Rows[i][1]</td>
+                            <td>@Model.Rows[i][2]</td>
+                            <td>@Model.Rows[i][4]</td>
+                            <td>@Model.Rows[i][6]</td>
+
+                            <td style="margin-left:3px;"><button class="btn-success" onclick="location.href=' @Url.Action("UpdatePendingBlogApproval", "Admin", new { id =Model.Rows[i][0]})'">Approve</button></td>
+
+
+
+
+                        </tr>
+                    }
+
+
+                </table>*@
+
+        }
+    </div>
+
+</body>
+

@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "SeePendingBlogs";
+}
+
+
+
+<body style="background:url(../images/pic18.jpg);background-size:cover;">
+    <div style="background-color:white;padding:2%;margin-top:2%;">
+        <h2>Pending Blogs</h2>
+        @if (Model.Rows.Count == 0)
+        {
+            <h3>You have no Pending Blogs.</h3>
+        }
+        else
+        {
+            <table class="table table-bordered table-striped" style="background-color:white">
+                <tr>
+                    <th style="border: 2px solid #2C3E50;">
+                        Title
+                    </th>
+                    <th style="border: 2px solid #2C3E50;">
+                        Body
+                    </th>
+                    <th style="border: 2px solid #2C3E50;">
+                        Type of Blog
+                    </th>
+                    <th style="border: 2px solid #2C3E50;">
+                        Approval Status
+                    </th>
+                    <th style="border: 2px solid #2C3E50;">
+                        Remove
+                    </th>
+                    <th style="border: 2px solid #2C3E50;">
+                        Edit
+                    </th>
+
+                </tr>
+                @for (int i = 0; i < Model.Rows.Count; i++)
+                {
+                    string blg = "";
+                    if (@Model.Rows[i][2].Length > 100)
+                    {
+                        blg = @Model.Rows[i][2].Substring(0, 100);
+                        blg = blg + "...";
+                    }
+                    else
+                    {
+                        blg = @Model.Rows[i][2];
+                    }
+
+                    <tr>
+
+                        <td style="border: 1px solid #2C3E50;">@Model.Rows[i][1]</td>
+                        <td style="border: 1px solid #2C3E50;">@blg</td>
+                        <td style="border: 1px solid #2C3E50;">@Model.Rows[i][4]</td>
+                        @if (Model.Rows[i][3] == 0)
+                        {
+                            <td style="border: 1px solid #2C3E50;">Approval Pending</td>
+                        }
+                        <td style="margin-left:3px;border: 1px solid #2C3E50;"><button class="btn-danger" onclick="location.href=' @Url.Action("DeleteBlog", "Blogger", new { @blogid =Model.Rows[i][0],@bloggerid =Model.Rows[i][6]})'">Remove</button></td>
+
+                        <td style="margin-left:3px;border: 1px solid #2C3E50;"><button class="btn-success" onclick="location.href=' @Url.Action("EditBlog", "Blogger", new {  @blogid =Model.Rows[i][0],@bloggerid =Model.Rows[i][6]})'">Edit</button></td>
+
+
+
+                    </tr>
+                }
+
+
+            </table>
+        }
+    </div>
+</body>

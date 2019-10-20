@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Events";
+}
+<link href="~/style/indexHome.css" rel="stylesheet" />
+<link href="~/style/classifiedCard.css" rel="stylesheet" />
+<body style="background:url(../images/l2.jpg);background-size:cover; background-color: rgba(0, 0, 0, 0.75);">
+    <div>
+
+
+
+        <div class="row">
+
+            @for (int i = 0; i < Model.Rows.Count; i++)
+            {
+
+
+                <div class="column" style="float:left;margin-top:2%">
+
+                    <div class="card" style="width:100%;height:400px;background-color:rgba(198, 198, 206, 0.67);border-radius:10px;" align="center">
+                        @*MAYEESHA*@
+                        @{
+                             var image = Model.Rows[i][6];
+                            int ln = image.Length - 65;
+                            var im = image.Substring(65, ln);
+                        }
+                       
+                        <img src="@Url.Content(im)" alt="Image" style="width:100%;height:200px" />
+
+                        <p style="color:black;font-size:20px;font-weight:bold;"> @Model.Rows[i][1]</p>
+                        <p style="color:black;font-size:20px;font-weight:bold;">@Model.Rows[i][2]</p>
+                        @{
+                            DateTime s = Model.Rows[i][3];
+                            string x = s.ToString();
+                            string date = x.Substring(0, 10);
+
+                        }
+                        <p style="color:black;font-size:20px;font-weight:bold;" class="fa fa-calendar">  @date</p>
+                        <p style="color:black;font-size:20px;font-weight:bold;" class="fa fa-clock-o">@Model.Rows[i][4]</p>
+                        <p style="color:black;font-size:20px;font-weight:bold;" class="fa fa-map-marker"> @Model.Rows[i][5]</p>
+                    </div>
+                </div>
+
+            }
+        </div>
+
+
+    </div>
+
+</body>

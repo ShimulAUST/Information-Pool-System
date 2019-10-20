@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Profile";
+    System.Web.HttpContext.Current.Session["sessionString"] = TempData["currentSession"];
+    string CurrentURL = System.Web.HttpContext.Current.Request.Url.AbsolutePath;
+    
+}
+<link href="~/style/indexHome.css" rel="stylesheet" />            
+<body style="background:url(../images/2.jpg) fixed;background-size: cover;text-align:center;color:white;">
+   
+    <h2>Profile Details</h2>
+    <div class="mainClass" style="width: 70%;margin: 0 auto;background: rgba(12, 12, 12, 0.51);padding: 3em;position: relative;">
+
+
+
+        <div class="form-date-w3-agileits" style="text-align: center;">
+            <i class="fa fa-user-circle" style="font-size:40px;"></i>
+            <h3>Name: @Model.Rows[0][1]</h3>
+            <h3>Email Address: @Model.Rows[0][2]</h3>
+
+            @if (Model.Rows[0][4] == 0)
+            {
+                <h3>Blogger Status: NA </h3>
+            }
+            else if (Model.Rows[0][4] == 1)
+            {
+                <h3>Blogger Status: Applied to be blogger </h3>
+            }
+            else
+            {
+                <h3>Blogger Status: Blogger </h3>
+            }
+
+            <h3>
+                Change Password
+            </h3>
+            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("ChangePasword", "User",new { email=@Model.Rows[0][2]})'">Change</button>
+        </div>
+       
+
+
+
+    </div>
+    <!-- //Main -->
+
+</body>

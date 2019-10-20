@@ -1,0 +1,65 @@
+﻿@model InfopoolFinal.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="Slide Login Form template Responsive, Login form web template, Flat Pricing tables, Flat Drop downs Sign up Web Templates, Flat Web Templates, Login sign up Responsive web template, SmartPhone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
+
+<link href="~/style/font-awesome.min.css" rel="stylesheet" />
+<link href="~/style/style.css" rel="stylesheet" />
+<script src="~/Scripts/loginJS.js"></script>
+
+
+@using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @class = "form-horizontal ", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+<body>
+    @Html.Raw(TempData["msg"]);
+    @{
+
+        TempData["msg"] = null;
+    }
+
+    <div class="bg-layer">
+        <h1 style="margin-top:2%;">@ViewBag.Title</h1>
+        <div class="header-main">
+            <div class="main-icon">
+                <span class="fa fa-eercast"></span>
+            </div>
+            <div class="header-left-bottom">
+                <form action="#" method="post" class="agileits_w3layouts_form">
+                    <div class="icon1">
+                        <span class="fa fa-user"></span>
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "UserName", required = "required", @style = "margin-left:10px; " })
+                    </div>
+                    <div class="icon1">
+                        <span class="fa fa-envelope"></span>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @type="email",placeholder = "Email", required = "required", @style = "margin-left:10px; " })
+                    </div>
+                    <div class="icon1">
+                        <span class="fa fa-lock"></span>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password", required = "required", @style = "margin-left:10px; " })
+                    </div>
+                    <div class="icon1">
+                        <span class="fa fa-lock"></span>
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", required = "required", @placeholder = "Confirm Password", @style = "margin-left:10px; " })
+                    </div>
+                    <input class="btn btn-default" type="submit" value="Register" />
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+}
+
+

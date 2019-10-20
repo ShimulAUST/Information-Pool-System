@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Blogs";
+}
+
+
+
+
+
+<body style="background:url(../images/pic18.jpg);background-size:cover">
+    <div style="background-color:white;padding:2%;margin-top:5%">
+            <div>
+                <IMG SRC="../images/bloggif.gif" style="width:100%;height:400px;">
+            </div>
+        <hr />
+
+            @if (Model.Rows.Count == 0)
+            {
+                <h3>No Blogs about this topic exist in our site at the moment.</h3>
+            }
+            else
+            {
+                <table class="table table-bordered table-striped" style="background-color:white;">
+                    <tr>
+                        <th style="border: 2px solid #2C3E50;font-weight:bold">
+                            Title
+                        </th>
+
+                        <th style="border: 2px solid #2C3E50;">
+                            Type
+                        </th>
+
+                    </tr>
+                    @for (int i = 0; i < Model.Rows.Count; i++)
+                    {
+                        <tr>
+
+                            <td style="border: 1px solid #2C3E50;"><a href="@Url.Action("BlogView", "Blogger",new { blogid=@Model.Rows[i][0]})" target="_blank">@Model.Rows[i][1]</a>  </td>
+
+                            <td style="border: 1px solid #2C3E50;">@Model.Rows[i][4]</td>
+                        </tr>
+                    }
+
+
+                </table>
+            }
+        </div>
+</body>

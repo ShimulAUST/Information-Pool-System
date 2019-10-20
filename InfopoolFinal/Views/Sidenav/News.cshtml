@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "News";
+}
+
+
+
+<link href="~/style/indexHome.css" rel="stylesheet" />
+<body style="background:url(../images/n26.jpg);">
+
+    <div class="container" style="background-color:white;width:100%;height:100%;margin-top:5%;padding:2%">
+        <div style="background-color:#1ab5df;height:400px;">
+            <IMG SRC="../images/newsprint.gif" style="margin-left:30%;">
+        </div>
+
+
+        <hr />
+        @if (Model.Rows.Count == 0)
+        {
+            <h3>No News about this topic exist in our site at the moment.</h3>
+        }
+        else
+        {
+
+            for (int i = 0; i < Model.Rows.Count; i++)
+            {
+                <div style="margin-left:10%">
+                    <h3><a href=@Model.Rows[i][2] target="_blank">@Model.Rows[i][1]</a> </h3>
+                    <h5>Source: @Model.Rows[i][3]</h5>
+                </div>
+                <hr />
+            }
+
+
+        }
+    </div>
+</body>

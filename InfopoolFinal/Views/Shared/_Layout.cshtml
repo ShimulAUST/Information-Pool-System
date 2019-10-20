@@ -1,0 +1,151 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Information Pool System</title>
+    <link rel="stylesheet" href="~/Content/sidenav.css" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#2C3E50;">
+
+        <div class="container">
+
+
+            <div class="navbar-header">
+
+                <div id="mySidenav" class="sidenav" style="background-color: #2C3E50;">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    @*NEWS*@
+                    <h3 style="margin-left:40px;color:white;">NEWS</h3>
+                    @Html.ActionLink("  Breaking News", "News", "Sidenav", new { type = "Breaking" }, new { @class = "fa fa-bolt", @style = "margin-right:10px;color:white;  font-size: 18px;" })
+
+                    @Html.ActionLink("  World News", "News", "Sidenav", new { type = "World" }, new { @class = "fa fa-newspaper-o", @style = "margin-right:10px;color:white;  font-size: 18px;" })
+
+                    @Html.ActionLink("  Tech News", "News", "Sidenav", new { type = "Technology" }, new { @class = "fa fa-laptop", @style = "margin-right:10px;color:white;  font-size: 18px;" })
+
+
+                    @Html.ActionLink("  Fashion News", "News", "Sidenav", new { type = "Fashion" }, new { @class = "fa fa-shopping-bag", @style = "margin-right:10px;color:white;  font-size: 18px;" })
+
+
+                    @Html.ActionLink("  Business News", "News", "Sidenav", new { type = "Business" }, new { @class = "fa fa-briefcase", @style = "margin-right:10px;color:white;  font-size: 18px;" })
+
+
+                    @Html.ActionLink("  Stock Market News", "News", "Sidenav", new { type = "StockMarket" }, new { @class = "fa fa-bank", @style = "margin-right:10px;color:white;  font-size: 18px;" })
+
+
+                    @Html.ActionLink("  Sports News", "News", "Sidenav", new { type = "Sports" }, new { @class = "fa fa-soccer-ball-o", @style = "margin-right:10px;color:white;  font-size: 18px;" })
+
+
+
+                    @*BLOGS*@
+                    <h3 style="margin-left:40px;color:white;">BLOGS</h3>
+                    @Html.ActionLink("  Latest Blogs", "Blogs", "Sidenav", new { type = "Breaking" }, new { @class = "fa fa-bolt", @style = "margin-right:10px;color:white;  font-size: 18px;" })
+
+                    @Html.ActionLink("  World Blogs", "Blogs", "Sidenav", new { type = "World" }, new { @class = "fa fa-newspaper-o", @style = "margin-right:10px;color:white;  font-size: 18px;" })
+
+                    @Html.ActionLink("  Tech Blogs", "Blogs", "Sidenav", new { type = "Technology" }, new { @class = "fa fa-laptop", @style = "margin-right:10px;color:white;  font-size: 18px;" })
+
+
+                    @Html.ActionLink("  Fashion Blogs", "Blogs", "Sidenav", new { type = "Fashion" }, new { @class = "fa fa-shopping-bag", @style = "margin-right:10px;color:white;  font-size: 18px;" })
+
+
+                    @Html.ActionLink("  Business Blogs", "Blogs", "Sidenav", new { type = "Business" }, new { @class = "fa fa-briefcase", @style = "margin-right:10px;color:white;  font-size: 18px;" })
+
+
+                    @Html.ActionLink("  Stock Market Blogs", "Blogs", "Sidenav", new { type = "StockMarket" }, new { @class = "fa fa-bank", @style = "margin-right:10px;color:white;  font-size: 18px;" })
+
+
+                    @Html.ActionLink("  Sports Blogs", "Blogs", "Sidenav", new { type = "Sports" }, new { @class = "fa fa-soccer-ball-o", @style = "margin-right:10px;color:white;  font-size: 18px;" })
+                </div>
+
+
+
+                <span class="navbar-brand" style="font-size:20px;cursor:pointer;color:#4a94c7;margin-left:-100px " onclick="openNav()">
+                    &#9776; @Html.ActionLink("Information Pool System", "Index", "Home", new { area = "" }, new { Style = "color:White;" })
+                </span>
+
+
+
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav" style="margin-left:4%">
+                    <li>@Html.ActionLink("News", "Index", "Home",new { area = "" }, new { Style = "font-size:14px" })</li>
+                    <li>@Html.ActionLink("Blogs", "AllBlogs", "Home",new { area = "" }, new { Style = "font-size:14px" })</li>
+                    <li>@Html.ActionLink("Events", "Events", "Home",new { area = "" }, new { Style = "font-size:14px" })</li>
+                    <li>@Html.ActionLink("Classifieds", "Classifieds", "Home",new { area = "" }, new { Style = "font-size:14px" })</li>
+                    <li>@Html.ActionLink("About", "About", "Home",new { area = "" }, new { Style = "font-size:14px" })</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home",new { area = "" }, new { Style = "font-size:14px" })</li>
+
+                    <li style="margin-left:80px; margin-top:8px;">
+                        @using (Html.BeginForm("Search", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+
+                            <input type="text" name="search" id="search" placeholder="Search..." style="color:black;height:35px" />
+
+                            <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="fa fa-search" style="color:black"></i></button>
+
+                        }
+                    </li>
+                    
+
+
+                    @{
+                        if ((TempData["currentSession"]) != null)
+                        {
+                            TempData.Keep();
+
+                            <li>
+                                <button type="button" class="btn btn-secondary my-2 my-sm-0" style="background-color:#a12837;color:white;margin-top:10px;margin-left:5px;height:35px"
+                                        onclick="location.href='@Url.Action("Logout", "Home")'">
+                                    Log Out     <i class="fa fa-sign-out"></i>
+                                </button>
+                                <button type="button" class="btn btn-secondary my-2 my-sm-0" style="background-color:#4a94c7;color:white;margin-top:10px;margin-left:5px;height:35px"
+                                        onclick="location.href='@Url.Action("PickProfile", "User")'">
+                                    <i class="fa fa-user"></i>
+                                </button>
+                            </li>
+
+                        }
+                        else
+                        {
+
+
+                            <li>@Html.ActionLink("Register", "Register", "Home", new { Style = "font-size:14px" })</li>
+                            <li>@Html.ActionLink("Login", "Login", "Home", new { Style = "font-size:14px" })</li>
+                        }
+                    }
+
+
+
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+        <footer style="text-align:center;">
+            <p style="color:#ffff;font-weight:600;">&copy; @DateTime.Now.Year - Information Pool System. All rights reserved.</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/SidenavJS.js"></script>
+
+
+</body>
+</html>

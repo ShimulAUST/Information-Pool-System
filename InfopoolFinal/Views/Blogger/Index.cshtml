@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    var mail = ViewBag.email;
+}
+
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    
+
+</head>
+<body style="text-align:center;background:url(../images/pic18.jpg);background-size: cover;">
+   
+    @Html.Raw(TempData["msg"]);
+    @{
+        
+        TempData["msg"] = null;
+    }
+    <div style="background:rgba(216, 216, 229, 0.67);height:700px">
+        <h2 style="color:black;font-weight:bold">Blogger Profile Home Page</h2>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("Profile", "User",new { email=mail})'"><i class="fa fa-user-circle" style="color:#dd2495"></i>     Profile Details</button>
+
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("PostNewBlog", "Blogger",new { email=mail})'"><i class="fa fa-pencil-square" style="color:#e1da49"></i>     Post New Blog</button>
+
+            </div>
+        </div>
+        <hr />
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("SeePendingBlogs", "Blogger",new { email=mail})'"><i class="fa fa-pencil-square" style="color:#24a347"></i><i class="fa fa-clock-o" style="color:#24a347"></i>     Pending Blogs</button>
+
+            </div>
+            <div class="col-md-6">
+
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("SeePreviousBlogs", "Blogger",new { email=mail})'"><i class="fa fa-pencil-square" style="color:#278acc"></i> <i class="fa fa-history" style="color:#278acc"></i>     Previous Blogs</button>
+
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("PostAd", "User",new { email=mail})'"><i class="fa fa-audio-description" style="color:#9224c7"></i>      Post New Ad</button>
+
+            </div>
+            <div class="col-md-6">
+
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("PreviousAds", "User",new { email=mail})'"><i class="fa fa-audio-description" style="color:#dc7e2d"></i> <i class="fa fa-history" style="color:#dc7e2d"></i>     Previous Ads</button>
+
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("PendingAd", "User",new { email=mail})'"><i class="fa fa-audio-description" style="color:#2b55cf"></i><i class="fa fa-clock-o" style="color:#2b55cf"></i>     Pending Ads</button>
+            </div>
+            <div class="col-md-6">
+
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("PaymentDetails", "User",new { email=mail})'"><i class="fa fa-credit-card" style="color:#19a174"></i>     Payment Details</button>
+
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:90%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("LoginDetails", "User",new { email=mail})'"><i class="fa fa-warning" style="color:#de1a32"></i>     Login details</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+

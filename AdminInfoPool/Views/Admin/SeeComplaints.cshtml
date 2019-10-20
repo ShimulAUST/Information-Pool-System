@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "SeeComplaints";
+    ViewData["sessionString"] = System.Web.HttpContext.Current.Session["sessionString"] as String;
+}
+<br />
+<br />
+<body style="background:url(../images/pic18.jpg);background-size:cover">
+    @Html.Raw(TempData["msg"]);
+    @{
+        TempData["msg"] = null;
+    }
+    <div style="background-color:white;padding:2%;margin-top:2%;margin-bottom:10%">
+        @if (ViewData["sessionString"] != null)
+        {
+            <button style="float:right;width:80px;height:30px" class="btn-info" onclick="location.href=' @Url.Action("Index", "Admin", new { adminName = ViewData["sessionString"] = System.Web.HttpContext.Current.Session["sessionString"] as String })'"><i class="fa fa-arrow-circle-left"></i>     Back</button>
+        }
+        else
+        {
+            <button style="float:right;width:80px;height:30px" class="btn-info" onclick="location.href=' @Url.Action("Index", "Home")'"><i class="fa fa-arrow-circle-left"></i>     Back</button>
+        }
+        <h2 align="center">Complaints</h2>
+
+        @if (Model.Rows.Count == 0)
+        {
+            <h3>No Compaints</h3>
+        }
+        else
+        {
+            <table table class="table table-bordered table-striped" style="background-color:white;">
+                <tr>
+                    <th style="border: 2px solid #2C3E50;font-weight:bold">
+                        Complaint Id
+                    </th>
+
+                    <th style="border: 2px solid #2C3E50;font-weight:bold">
+                        Complaint Title
+                    </th>
+
+                    <th style="border: 2px solid #2C3E50;font-weight:bold">
+                        Resolve
+                    </th>
+
+                    <th style="border: 2px solid #2C3E50;font-weight:bold">
+                        Ignore
+                    </th>
+                </tr>
+                @for (int i = 0; i < Model.Rows.Count; i++)
+                {
+                    <tr>
+
+                        <td style="border: 1px solid #2C3E50;">@Model.Rows[i][0]</td>
+                        <td style="border: 1px solid #2C3E50;">@Model.Rows[i][1]</td>
+
+
+                        <td style="border: 1px solid #2C3E50;"><button class="btn-success" onclick="location.href=' @Url.Action("SendEmail", "Admin",new { id=Model.Rows[i][0],adminName=ViewData["sessionString"]})'">Resolve</button></td>
+
+                        <td style="border: 1px solid #2C3E50;"><button class="btn-danger" onclick="location.href=' @Url.Action("IgnoreEmail", "Admin",new { id=Model.Rows[i][0]})'">Ignore</button></td>
+
+
+                    </tr>
+                }
+
+
+            </table>
+        }
+    </div>
+
+</body>

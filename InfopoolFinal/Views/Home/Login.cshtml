@@ -1,0 +1,71 @@
+﻿@using InfopoolFinal.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="Slide Login Form template Responsive, Login form web template, Flat Pricing tables, Flat Drop downs Sign up Web Templates, Flat Web Templates, Login sign up Responsive web template, SmartPhone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
+
+<link href="~/style/font-awesome.min.css" rel="stylesheet" />
+<link href="~/style/style.css" rel="stylesheet" />
+<script src="~/Scripts/loginJS.js"></script>
+@using (Html.BeginForm("Login", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<body>
+    
+    @Html.Raw(TempData["msg"]);
+    @{
+        
+        TempData["msg"] = null;
+    }
+
+    <!-- main -->
+
+    <div class="bg-layer">
+        <h1 style="margin-top:2%;">@ViewBag.Title</h1>
+        <div class="header-main">
+            <div class="main-icon">
+                <span class="fa fa-eercast"></span>
+            </div>
+            <div class="header-left-bottom">
+
+                <form action="#" method="post">
+                    <div class="icon1">
+                        <span class="fa fa-user"></span>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control ",@type="email", @placeholder = "Email", required = "required" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="icon1">
+                        <span class="fa fa-lock"></span>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password", required = "required" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="bottom">
+                        <input type="submit" value="Log in" class="btn btn-default" />
+                    </div>
+                    <div class="links" style="text-align:center;margin-top:10%;">
+                        @Html.ActionLink("Register as a new user", "Register", new { area = "" }, new { Style = "color:White" })
+                        <div class="clear"></div>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <!-- //main -->
+</body>
+    
+
+
+}

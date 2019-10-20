@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "BlogView";
+    bool showBtn,showBox;
+    if (ViewBag.ShowLikeBtn == null)
+    {
+        showBtn = false;
+    }
+    else
+    {
+        showBtn = ViewBag.ShowLikeBtn;
+    }
+    if (ViewBag.ShowCommentBox == null)
+    {
+        showBox = false;
+    }
+    else
+    {
+        showBox = ViewBag.ShowCommentBox;
+    }    
+    List<string> allcomments = (List<string>)ViewBag.comments;
+}
+<body style="background:url(../images/2.jpg) fixed;background-size: cover;color:white;">
+    
+    @Html.Raw(TempData["msg"]);
+    @{ 
+        
+        TempData["msg"] = null;
+    }
+    <div class="mainClass" style="width: 80%;margin: 0 auto;margin-top:2%;background: rgba(4, 4, 4, 0.56);padding: 3em;position: relative;">
+        <div class="form-date-w3-agileits" style="">
+
+            <button class="btn-primary" style="float:right;" onclick="location.href=' @Url.Action("AllBlogs", "Home")'">
+                Back
+                <i class="fa fa-arrow-circle-left"></i>
+            </button>
+            @for (int i = 0; i < Model.Rows.Count; i++)
+            {
+
+
+                <h1 style="text-align:center;">@Model.Rows[i][1]</h1>
+                <h2 style="text-align:center;">@Model.Rows[i][4]</h2>
+                var image = Model.Rows[i][5];
+                <img src="@Url.Content(image)" alt="Image" style="width:100%;height:400px" />
+                <h5>@Model.Rows[i][2]</h5>
+                <h5><i class="fa fa-thumbs-o-up" style="color:#1673d0;"></i>   @Model.Rows[i][9]</h5>
+                <hr />
+                if (TempData["currentSession"] != null && showBtn == true && showBox == true)
+                {
+                    <button class="btn-default" style="" onclick="location.href=' @Url.Action("LikePost", "Blogger",new { blogid=Model.Rows[i][0]})'">
+                        <i class="fa fa-thumbs-up">LIKE</i>
+                    </button>
+
+                    using (Html.BeginForm("CommentPost", "Blogger", FormMethod.Post))
+                    {
+                        <h4><i class="fa fa-comment-o"></i>Comment:</h4>
+                        <input type="text" name="comment" id="comment" placeholder="Write Comment..." style="color:black" />
+                        <input type="hidden" name="blogid" id="blogid" value="@Model.Rows[i][0]" style="color:black" />
+                        <input type="submit" value="Post Comment" class="btn-default" style="color:black;font-weight:bold;" />
+                    }
+
+
+                }
+                else if (TempData["currentSession"] != null && showBtn == false && showBox == true)
+                {
+                    <button class="btn-primary" style="" disabled>
+                        <i class="fa fa-thumbs-up">LIKED</i>
+                    </button>
+                    using (Html.BeginForm("CommentPost", "Blogger", FormMethod.Post))
+                    {
+                        <h4><i class="fa fa-comment-o"></i>Comment:</h4>
+                        <input type="text" name="comment" id="comment" placeholder="Write Comment..." style="color:black" />
+                        <input type="hidden" name="blogid" id="blogid" value="@Model.Rows[i][0]" style="color:black" />
+                        <input type="submit" value="Post Comment" class="btn-default" style="color:black;font-weight:bold;" />
+                    }
+
+                }
+                else if (TempData["currentSession"] != null && showBtn == true && showBox == false)
+                {
+                    <button class="btn-default" style="" onclick="location.href=' @Url.Action("LikePost", "Blogger",new { blogid=Model.Rows[i][0]})'">
+                        <i class="fa fa-thumbs-up">LIKE</i>
+                    </button>
+                    using (Html.BeginForm("CommentPost", "Blogger", FormMethod.Post))
+                    {
+                        <h4><i class="fa fa-comment-o"></i>Comment:</h4>
+                        <input type="text" name="comment" id="comment" placeholder="Write Comment..." style="color:black;" />
+                        <input type="hidden" name="blogid" id="blogid" value="@Model.Rows[i][0]" style="color:black;" />
+                        <input type="submit" value="Post Comment" class="btn-default" style="color:black;font-weight:bold;" />
+                    }
+
+                }
+                else if (TempData["currentSession"] != null && showBtn == false && showBox == false)
+                {
+                    <button class="btn-primary" style="" disabled>
+                        <i class="fa fa-thumbs-up">LIKED</i>
+                    </button>
+
+                }
+                <h2><i class="fa fa-comments-o">Comments:</i></h2>
+                <hr style="border-color:#454444" />
+                if (allcomments.Count == 0)
+                {
+                    <h3>No comment has been posted yet.</h3>
+                }
+                else
+                {
+                    <table>
+                        @foreach (string comment in allcomments)
+                        {
+                            <tr>@comment</tr>
+                            <hr style="border-color:#454444" />
+                        }
+                    </table>
+                }
+
+
+
+
+            }
+        </div>
+    </div>
+</body>
+

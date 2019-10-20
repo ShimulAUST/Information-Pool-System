@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Index";
+    var mail = ViewBag.email;
+    //System.Web.HttpContext.Current.Session["sessionString"] = TempData["currentSession"];
+    
+
+}
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        
+
+    </head>
+    <body style="text-align:center;background:url(../images/pic18.jpg);background-size: cover;">
+        
+        @Html.Raw(TempData["msg"]);
+        @{
+            
+            TempData["msg"] = null;
+        }
+
+        <div style="background:rgba(216, 216, 229, 0.67);height:600px">
+            <h2 style="color:black;font-weight:bold">Profile Home Page</h2>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("Profile", "User",new { email=mail})'"><i class="fa fa-user-circle" style="color:#dd2495"></i>     Profile Details</button>
+
+                </div>
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("PostAd", "User",new { email=mail})'"><i class="fa fa-audio-description" style="color:#189719"></i>     Post New Ad</button>
+
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("PreviousAds", "User",new { email=mail})'"><i class="fa fa-audio-description" style="color:#8c1cd5"></i><i class="fa fa-history" style="color:#8c1cd5"></i>     Previous Ads</button>
+
+                </div>
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("PendingAd", "User",new { email=mail})'"><i class="fa fa-audio-description" style="color:#d1d12a"></i><i class="fa fa-clock-o" style="color:#d1d12a"></i>     Pending Ads</button>
+
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("PaymentDetails", "User",new { email=mail})'"><i class="fa fa-credit-card" style="color:#17ab73"></i>     Payment Details</button>
+
+                </div>
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("LoginDetails", "User",new { email=mail})'"><i class="fa fa-sign-in" style="color:#2292bd"></i><i class="fa fa-vcard-o" style="color:#2292bd"></i>     Login details</button>
+
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:90%;color:white;font-weight:bold;font-size:20px;"
+                            onclick=" this.style.visibility = 'hidden';location.href='@Url.Action("BloggerApply", "User",new { email=mail,u=TempData["currentSession"]})'">
+                        <i class="fa fa-sign-in" style="color:#e06924"></i><i class="fa fa-pencil-square" style="color:#e06924"></i>     Apply To Be A Blogger
+                    </button>
+                </div>
+            </div>
+        </div>
+    </body>
+

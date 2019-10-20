@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Classifieds";
+}
+<link href="~/style/indexHome.css" rel="stylesheet" />
+<link href="~/style/classifiedCard.css" rel="stylesheet" />
+<body style="background:url(../images/c4.jpg);background-size:cover;margin-top:2%;color:white;">
+
+    <div style="background-color:rgba(0, 0, 0, 0.75);padding:5%;">
+        <h2 style="text-align:center;">Classifieds</h2>
+        <hr/>
+
+
+
+        @if (Model.Rows.Count == 0)
+        {
+            <h3 style="color:white;text-align:center;">We have no ads to show at the moment.</h3>
+        }
+        else
+        {
+            
+                for (int i = 0; i < Model.Rows.Count; i++)
+                {
+                    
+
+    <div>
+
+        <h3 style="font-weight:bold;">@Model.Rows[i][1]</h3>
+        <p>@Model.Rows[i][2]</p>
+        @if(!String.IsNullOrEmpty(Model.Rows[i][9].ToString()))
+        {
+        <p><i class="fa fa-phone"></i>@Model.Rows[i][9]</p>
+        }
+    </div>
+                    <hr/>
+                    <hr />
+                }
+            
+            
+        }
+    </div>
+</body>

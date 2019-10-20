@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "PreviousAds";
+}
+    <body style="background:url(../images/pic18.jpg);background-size:cover">
+        <div style="background-color:white;padding:2%;margin-top:2%">
+            <h2>Previous Ads</h2>
+            @if (Model.Rows.Count == 0)
+            {
+                <h3>You have no Previous Ads.</h3>
+            }
+            else
+            {
+                <table table class="table table-bordered table-striped" style="background-color:white;">
+                    <tr>
+                        <th style="border: 2px solid #2C3E50;font-weight:bold;width:30%;">
+                            Ad Title
+                        </th>
+                        <th style="border: 2px solid #2C3E50;font-weight:bold">
+                            Ad Body
+                        </th>
+                        <th style="border: 2px solid #2C3E50;font-weight:bold">
+                            Contact
+                        </th>
+                    </tr>
+                    @for (int i = 0; i < Model.Rows.Count; i++)
+                    {
+                <tr>
+
+                    <td style="border: 1px solid #2C3E50;">@Model.Rows[i][1]</td>
+                    <td style="border: 1px solid #2C3E50;">@Model.Rows[i][2]</td>
+                    <td style="border: 1px solid #2C3E50;">@Model.Rows[i][9]</td>
+                </tr>
+                    }
+
+
+                </table>
+            }
+        </div>
+    </body>

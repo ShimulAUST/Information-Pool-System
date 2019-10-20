@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewData["sessionString"] = System.Web.HttpContext.Current.Session["sessionString"] as String;
+    ViewBag.Title = "Index";
+    var adminName = ViewBag.adminName;
+}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+
+
+@if (ViewData["sessionString"] != null)
+{   <body style="text-align:center;background:url(../images/pic18.jpg);background-size: cover;">
+    @Html.Raw(TempData["msg"]);
+    @{
+        TempData["msg"] = null;
+    }
+    <div style="background:rgba(216, 216, 229, 0.67);padding:2%;margin-top:10px;">
+
+        <button type="button" class="btn btn-primary" style=" background-color:#a30404;float:right;height:50px;width:140px;color:white;font-weight:bold;font-size:22px;" onclick="location.href='@Url.Action("Logout", "Admin")'"><i class="fa fa-sign-out"></i></button>
+
+        <h2 style="color:black;font-weight:bold; text-align:center;margin-left:100px;">ADMIN HOME</h2>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("AddLink", "Admin", new { adminName = adminName })'"><i class="fa fa-newspaper-o" style="color:#741dc1"></i>     ADD LINKS </button>
+
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("AddEvent", "Admin", new { adminName = adminName })'"><i class="fa fa-calendar-plus-o" style="color:#ff6a00"></i>     ADD EVENTS</button>
+
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("SeeComplaints", "Admin", new { adminName = adminName })'"><i class="fa fa-warning" style="color:#ff0000"></i>     SEE COMPLAINTS</button>
+
+            </div>
+            <div class="col-md-6">
+
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("SeePendingBlogs", "Admin", new { adminName = adminName })'"><i class="fa fa-pencil-square" style="color:#2894c9"></i><i class="fa fa-hourglass-start" style="color:#2894c9"></i>     SEE PENDING BLOGS</button>
+
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("SeeAllBlogs", "Admin", new { adminName = adminName })'"><i class="fa fa-pencil-square" style="color:#c6ca36"></i>     SEE ALL BLOGS</button>
+
+            </div>
+            <div class="col-md-6">
+
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("SeePendingAds", "Admin", new { adminName = adminName })'"><i class="fa fa-audio-description" style="color:#e78742"></i><i class="fa fa-hourglass-start" style="color:#e78742"></i>     SEE PENDING ADVERTISEMENTS</button>
+
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("SeePayments", "Admin", new { adminName = adminName })'"><i class="fa fa-credit-card" style="color:#1a9783"></i>     SEE PAYMENTS</button>
+
+            </div>
+            <div class="col-md-6">
+
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("RemoveLink", "Admin", new { adminName = adminName })'"><i class="fa fa-newspaper-o" style="color:#da429f"></i><i class="fa fa-remove" style="color:#da429f"></i>     REMOVE LINKS</button>
+
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("RemoveEvent", "Admin", new { adminName = adminName })'"><i class="fa fa-calendar" style="color:#2b34c9"></i><i class="fa fa-remove" style="color:#2b34c9"></i>     REMOVE EVENTS</button>
+
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary" style="background-color:rgba(33, 33, 45, 0.80);border:none;border-radius:15px;height:90px;width:80%;color:white;font-weight:bold;font-size:20px;" onclick="location.href='@Url.Action("SeePendingBlogger", "Admin", new { adminName = adminName })'"><i class="fa fa-clock-o " style="color:#ea2a4b"></i>    SEE PENDING BLOGGER</button>
+
+            </div>
+        </div>
+        <hr />
+
+    </div>
+</body>
+}
+else
+{
+    <script type="text/javascript">
+    window.location = "@Url.Action("Index", "Home")";
+    </script>
+
+}

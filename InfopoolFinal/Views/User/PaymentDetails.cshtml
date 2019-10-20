@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "PaymentDetails";
+    var mail = ViewBag.email;
+}
+
+
+
+<body style="background:url(../images/pic18.jpg);background-size:cover">
+    <div style="background-color:white;padding:2%;margin-top:2%">
+        <h2>Payment Details</h2>
+        @if (Model.Rows.Count == 0)
+        {
+            <h3>You have no Previous Payment Record.</h3>
+        }
+        else
+        {
+    <table table class="table table-bordered table-striped" style="background-color:white;">
+        <tr>
+            <th style="border: 2px solid #2C3E50;font-weight:bold">
+                Ad Title
+            </th>
+            <th style="border: 2px solid #2C3E50;font-weight:bold">
+                Ad Body
+            </th>
+            <th style="border: 2px solid #2C3E50;font-weight:bold">
+                Payment Amount
+            </th>
+            <th style="border: 2px solid #2C3E50;font-weight:bold">
+                Payment Status
+            </th>
+
+        </tr>
+        @for (int i = 0; i < Model.Rows.Count; i++)
+        {
+    <tr>
+        
+        <td style="border: 1px solid #2C3E50;">@Model.Rows[i][1]</td>
+        <td style="border: 1px solid #2C3E50;">@Model.Rows[i][2]</td>
+        <td style="border: 1px solid #2C3E50;">@Model.Rows[i][6]</td>
+        @if (Model.Rows[i][4] == 0)
+        {
+            <td style="border: 1px solid #2C3E50;">
+                Unpaid
+                <button class="btn-info" onclick="location.href=' @Url.Action("Payment", "User", new { @uid =Model.Rows[i][5],@adid =Model.Rows[i][0],email=mail,u=TempData["currentSession"]})'">Payment</button>
+            </td>
+        }
+        else if (Model.Rows[i][4] == 1)
+        {
+            <td style="border: 1px solid #2C3E50;">Paid</td>
+        }
+        else
+        {
+            <td style="border: 1px solid #2C3E50;">Approved</td>
+        }
+    </tr>
+        }
+        
+
+    </table>
+        }
+    </div>
+</body>

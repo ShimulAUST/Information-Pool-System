@@ -1,0 +1,90 @@
+﻿@model InfopoolFinal.Models.AdViewModel
+@{
+    ViewBag.Title = "PostAd";
+    var mail = ViewBag.email;
+}
+
+
+@using (Html.BeginForm("PostAd", "User", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+
+
+<body style="background:url(../images/watch.jpg); background-size:cover">
+    
+
+    <div class="w3ls-grids">
+
+        <div class="w3ls-right" style="float: right;width: 45%;background:rgba(194, 191, 183, 0.95);text-align: center;border-radius:10px; ">
+            <div class="w3l-dot">
+                <div class="w3-heading">
+                    <h3 style="font-size: 2.5em;font-weight:bold; padding:2%;color:black;text-shadow: 2px 3px rgba(121, 119, 113, 0.60);letter-spacing: 12px;line-height: 1.5em;">
+                        Post Ad
+                    </h3>
+                    <h4 style="color: #000;font-weight:bold;">How to Pay for Ads:</h4>
+                    <h5 style="font-weight:bold;"><p>**First 100 characters cost Tk. 100**</p></h5>
+                    <h5 style="font-weight:bold;"><p>** After that, for each character you have to pay Tk 0.50**</p></h5>
+                    <h5 style="font-weight:bold;margin-bottom:2%">**Send the payment to bkash no. 01872571319**</h5>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="mainClass" style="padding:2%;width:50%;background: rgba(194, 191, 183, 0.80);margin-top:50px;border-radius:15px">
+            <div class="w3-title">
+                <h2 style="text-align:center;color:#000;font-weight:bold;">Fill up the form</h2>
+
+            </div>
+
+
+            <div class="" align="center">
+                <div class="form-group">
+
+                    <label>Ad Title:</label>
+
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", required = "required", @style = "height:60px" })
+
+                </div>
+                <div class="form-group">
+
+                    <label>Details:</label>
+
+                    @Html.TextAreaFor(m => m.Body, new { @class = "form-control", required = "required", @style = "height:200px" })
+
+                </div>
+                <div class="form-group">
+
+                    <label>Contact Details:</label>
+
+                    @Html.TextBoxFor(m => m.Contact, new { @class = "form-control",@pattern="^\\d{11}$",@placeholder="01xxxxxxxxx",@type="tel", required = "required"})
+
+                </div>
+                <div class="form-group">
+                    @Html.HiddenFor(m => m.EmailFromView, new { @class = "form-control" })
+
+
+                </div>
+
+
+                <div>
+
+                    <input type="submit" value="Submit Ad For Approval" class="btn btn-success" />
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+</body>
+
+}
+
+
+
