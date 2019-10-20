@@ -6,9 +6,14 @@ impartial news to its users persistently.
 
 
 There are mainly three types of actors in our developed project. They are:
+
+
 Unregistered users
+
 Registered users
+	
 	Blogger
+	
 	Registered user
 Admin
 
