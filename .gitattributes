@@ -1,5 +1,5 @@
 *.cs linguist-language=C#
-*.css linguist-detectable=true
+*.cs linguist-detectable=true
 *.java linguist-detectable=false
 *.js linguist-detectable=false
 *.html linguist-detectable=false
